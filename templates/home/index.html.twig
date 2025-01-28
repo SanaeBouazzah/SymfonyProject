@@ -19,14 +19,14 @@
 		</div>
     {% if is_granted('ROLE_ADMIN') %}
     <div><a href="{{ path('users') }}">Users</a></div>
-    {# {% endif %}
+    {% endif %}
 		<form method="post">
 			{% if app.user %}
 				<div class="mb-3 d-flex justify-content-center flex-column align-items-center">
 					<span>Hi, {{ app.user.userIdentifier }}</span></br>
 					<a type="button" class="btn btn-dark mt-3" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-to-bracket"></i>Logout</a>
 				</div>
-			{% endif %} #}
+			{% endif %}
 		</form>
 		<div class="d-flex justify-content-center">
 			<h2>Center</h2>
