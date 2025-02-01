@@ -13,20 +13,20 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class HomeController extends AbstractController
 {
-  #[Route('/', name: 'app_home')]
+  #[Route('/home', name: 'app_home')]
   public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response{
-    // $user = new User();
-    // $existingUser = $em->getRepository(User::class)->findOneBy(['username' => 'sanae']);
-    // if (!$existingUser) {
-    //   $user->setUsername('sanae')
-    //     ->setPassword($hasher
-    //       ->hashPassword($user, '0000'))
-    //     ->setRoles([]);
-    //   $em->persist($user);
-    //   $em->flush();
-    //   $this->addFlash('success', 'You have successfully logged in.');
-    // }
-    return $this->render('base.html.twig', [
+    $user = new User();
+    $existingUser = $em->getRepository(User::class)->findOneBy(['username' => 'sanae']);
+    if (!$existingUser) {
+      $user->setUsername('sanae')
+        ->setPassword($hasher
+          ->hashPassword($user, '0000'))
+        ->setRoles([]);
+      $em->persist($user);
+      $em->flush();
+      $this->addFlash('success', 'You have successfully logged in.');
+    }
+    return $this->render('home/index.html.twig', [
       'controller_name' => 'HomeController',
     ]);
   }
