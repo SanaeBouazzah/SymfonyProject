@@ -17,12 +17,19 @@
 					<a href="{{ path('app_login') }}">log in</a>.</p>
 			{% endif %}
 		</div>
-    {% if is_granted('ROLE_ADMIN') %}
-    <div><a href="{{ path('users') }}">Users</a></div>
-    {% endif %}
-		<div class="d-flex justify-content-center">
-			<h2>Center</h2>
-		</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<div>
+				<a href="{{ path('users') }}">Users</a>
+			</div>
+		{% endif %}
+		<form method="post">
+			{% if app.user %}
+				<a type="button" class="dropdown-item" href="{{ path('app_logout') }}">
+					<i class="fa-solid fa-right-to-bracket"></i>Logout</a>
+			</div>
+		{% endif %}
+	</form>
+	<div class="d-flex justify-content-center">
+		<h2>Center</h2>
 	</div>
-
-{% endblock %}
+</div>{% endblock %}
