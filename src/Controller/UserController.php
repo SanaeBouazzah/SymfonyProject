@@ -28,20 +28,18 @@ final class UserController extends AbstractController
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $hashedPassword = $passwordHasher->hashPassword(
-              $user,
-              $user->getPassword()
-            );
-            $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']);
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('users');
+      $user = new User();
+      $form = $this->createForm(UserType::class, $user);
+      $form->handleRequest($request);
+  
+      if ($form->isSubmitted() && $form->isValid()) {
+          $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+          $user->setPassword($hashedPassword);
+          $user->setRoles(['ROLE_USER']);
+          $entityManager->persist($user);
+          $entityManager->flush();
+  
+          return $this->redirectToRoute('users');
         }
         return $this->render('user/new.html.twig', [
             'user' => $user,
@@ -69,7 +67,7 @@ final class UserController extends AbstractController
               $user->getPassword()
             );
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']);
+            // $user->setRoles(['ROLE_USER']);
             $entityManager->flush();
             return $this->redirectToRoute('users', [], Response::HTTP_SEE_OTHER);
         }

@@ -23,6 +23,10 @@
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>
+            <tr>
+                <th>Date Joined</th>
+                <td>{{ user.datejoined ? user.datejoined|date('Y-m-d H:i:s') : 'Not set' }}</td>
+            </tr>
         </tbody>
     </table>
 

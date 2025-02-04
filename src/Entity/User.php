@@ -18,6 +18,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180)]
     private ?string $username = null;
+    #[ORM\Column(type: 'datetime', name: 'date_joined', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeInterface $dateJoined = null;
+
+    public function __construct()
+    {
+        // Set the dateJoined to the current date and time when a new user is created
+        $this->dateJoined = new \DateTime(); 
+    }
+
+    // Getter and setter for the dateJoined property
+    public function getDateJoined(): ?\DateTimeInterface
+    {
+        return $this->dateJoined;
+    }
+    public function setDateJoined(\DateTimeInterface $dateJoined): self
+    {
+        $this->dateJoined = $dateJoined;
+        return $this;
+    }
 
     /**
      * @var list<string> The user roles
