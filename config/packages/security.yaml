@@ -41,11 +41,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/utilisateur/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/utilisateur, roles: ROLE_USER }
-        - { path: ^/membre, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/utilisateur/new, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/utilisateur, roles: ROLE_USER }
+        # - { path: ^/membre, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/login, roles: IS_AUTHENTICATED_FULLY, access_denied: true }
 
 when@test:
     security:
