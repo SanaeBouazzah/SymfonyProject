@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,6 +21,8 @@ final class UserController extends AbstractController
     #[Route(name: 'users', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+      $searchData = new SearchData();
+      $form = $this->createForm(SearchType::class, $searchData);
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
