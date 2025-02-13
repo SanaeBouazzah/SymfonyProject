@@ -7,14 +7,6 @@
 	<main class="container-fluid py-4 px-4">
 		<div class="flex">
 			<h1>User index</h1>
-			{# <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-				<div class="input-group">
-					<input class="form-control" type="text" placeholder="Search for Users..." aria-label="Search for..." aria-describedby="btnNavbarSearch"/>
-					<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</form> #}
 		</div>
 
 
@@ -25,7 +17,6 @@
 					<th>Username</th>
 					<th>Roles</th>
 					<th>Date Joined</th>
-					<th>Password</th>
 					<th>actions</th>
 				</tr>
 			</thead>
@@ -36,7 +27,6 @@
 						<td>{{ user.username }}</td>
 						<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
 						<td>{{ user.datejoined ? user.datejoined|date('Y-m-d H:i:s') : 'Not set' }}</td>
-						<td>{{ user.password }}</td>
 						<td>
 							<a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
 							<a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
