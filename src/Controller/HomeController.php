@@ -23,10 +23,5 @@ final class HomeController extends AbstractController
      }
      return $this->redirectToRoute('app_login');
   }
-  #[Route('/', name: 'app_base')]
-  public function base(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response{
-    return $this->render('base.html.twig', [
-      'controller_name' => 'HomeController',
-    ]);
-  }
+
 }
