@@ -2,26 +2,33 @@
 
 namespace App\Controller;
 
-use App\Entity\Conversation;
 use App\Entity\User;
+use App\Entity\Conversation;
+use App\Factory\ConversationFactory;
 use App\Repository\ConversationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+/**
+ * @method User|null getUser()
+ */
 
 final class ConversationController extends AbstractController
 {
-     public function __construct(private readonly ConversationRepository $conversationRepository){}
-
-     public function fingByUsers(User $sender, User $recipient):  Conversation{
-
-     }
+     public function __construct(private readonly ConversationRepository $conversationRepository,
+                                 private readonly ConversationFactory $factory){}
 
     #[Route('/conversation/users/{recipient}', name: 'conversation.show')]
-    public function index(?User $recipient): Response
+    public function show(?User $recipient): Response
     {
-        return $this->render('conversation/index.html.twig', [
-            'controller_name' => 'ConversationController',
+       $sender = $this->getUser();
+       $conversation = $this->conversationRepository->findByUsers($sender, $recipient);
+       if(!$conversation){
+        $conversation = $this->factory->create($sender, $recipient);
+       }
+        return $this->render('conversation/show.html.twig', [
+            'conversation' => $conversation
         ]);
     }
 }
