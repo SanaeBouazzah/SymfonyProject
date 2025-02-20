@@ -8,7 +8,13 @@
 		<div class="flex">
 			<h1>User index</h1>
 		</div>
-
+		<ul>
+			{% for user in user_service.findAll %}
+				{% if app.user != user %}
+        <li><a href="{{path('conversation.show', {'recipient':user.id})}}">{{user.username}}</a></li>
+        {% endif %}
+			{% endfor %}
+		</ul>
 
 		<table class="table">
 			<thead>
