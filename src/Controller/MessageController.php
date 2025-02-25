@@ -13,9 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 
-/**
- * @method User|null getUser()
- */
+// /**
+//  * @method User|null getUser()
+//  */
 final class MessageController extends AbstractController
 {
     public function __construct(
