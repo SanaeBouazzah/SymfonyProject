@@ -32,13 +32,11 @@ final class MessageController extends AbstractController
         if (!$conversation) {
             return new Response('Conversation not found', Response::HTTP_NOT_FOUND);
         }
-
         $message = $this->factory->create(
             conversation: $conversation,
             author: $this->getUser(),
             content: $payload->content
         );
-
         $this->hub->publish(new Update(
             topics: $this->topicService->getTopicUrl($conversation),
             data: json_encode([
