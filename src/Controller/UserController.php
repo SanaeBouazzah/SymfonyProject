@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\SearchType;
 use App\Form\UserType;
+use App\Form\SearchType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,13 +14,22 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
 #[Route('/users')]
 // #[IsGranted('ROLE_ADMIN')]
 final class UserController extends AbstractController
 {
     #[Route(name: 'users', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
-    {
+    public function index(UserRepository $userRepository): Response{
+      // $user = new User();
+      // $user->setUsername('admin'); 
+      // $user->setUsername('admin@example.com'); 
+      // $user->setPassword('admin_password');
+      // $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+      // $user->setPassword($hashedPassword);
+      // $user->setRoles(['ROLE_ADMIN']); 
+      // $entityManager->persist($user);
+      // $entityManager->flush();
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
@@ -87,6 +96,6 @@ final class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('users', [], Response::HTTP_SEE_OTHER);
     }
 }
