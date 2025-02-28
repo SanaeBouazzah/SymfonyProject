@@ -25,7 +25,7 @@ final class MessageController extends AbstractController
         private readonly TopicService $topicService
     ) {}
 
-    #[Route('/messages', name: 'message.create', methods: ['POST'])]
+    #[Route('/messages', name: 'message_create', methods: ['POST'])]
     public function create(#[MapRequestPayload] CreateMessage $payload): Response
     {
         $conversation = $this->conversationRepository->find($payload->conversationId);
