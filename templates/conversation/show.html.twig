@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello ConversationController!{% endblock %}
+{% block title %}Chats{% endblock %}
 {% block body %}
 	<div class="container mt-5">
 		<div class="row right_page">
 			<div class="col">
 				<div class="card">
-					<div class="card-header">Messages</div>
+					<div class="card-header" style="text-transform:capitalize;">{{ recipient.username }}</div>
 					<div class="card-body">
-						<div class="overflow-y-auto" id="messages" style="height:460px;" hx-ext="sse" sse-connect="{{mercure(topic)}}" sse-swap="message">
+						<div class="overflow-y-auto popup" id="messages" style="height:460px;" hx-ext="sse" sse-connect="{{mercure(topic)}}" sse-swap="message">
 							{% include 'conversation/messages.html.twig' %}
 						</div>
 						<hr>
