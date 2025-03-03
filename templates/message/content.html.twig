@@ -1,10 +1,10 @@
 {% if app.user.id == message.author.id %}
- <p class="message small py-2 px-3 me-3 my-3 text-white rounded-5 test-start {% if app.user %}authenticated {% endif %}" style="width:fit-content;"
-   data-bs-toggle="tooltip"  data-bs-title="{{message.createdAt|date('d/m/Y H:i')}}">
-   {{message.content}} <span>{{message.createdAt|date('H:i')}}</span</p>
-{% else %}
-<p class="message message-end small py-2 px-3 me-3 mb-1 text-white rounded-5 my-3 text-bg-danger" style="width:fit-content;"
-     data-bs-toggle="toolip" data-bs-title="{{message.createdAt|date('d/m/Y H:i')}}">{{message.content}} 
-     <span>{{message.createdAt|date('H:i')}}</span></p>
-{% endif %}
-
+	<p class="message small py-2 px-3 mx-3 rounded-5 test-start" style="width:fit-content;
+					      background:#D9FDD3; color white;" data-bs-toggle="tooltip" data-bs-title="{{message.createdAt|date('d/m/Y H:i')}}">
+		{{message.content}}
+		<span style="font-size:10px; margin-left:20px;">{{message.createdAt|date('H:i')}}</span</p>
+	{% else %}
+		<p class="message message-end small py-2 px-3 mx-1 rounded-5" style="width:fit-content; background-color:black; color:white;" data-bs-toggle="toolip" data-bs-title="{{message.createdAt|date('d/m/Y H:i')}}">{{message.content}}
+			<span style="font-size:10px; margin-left:20px;">{{message.createdAt|date('H:i')}}</span>
+		</p>
+	{% endif %}
