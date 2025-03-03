@@ -40,6 +40,7 @@ final class ConversationController extends AbstractController
         return $this->render('conversation/show.html.twig', [
             'conversation' => $conversation,
             'topic' => $topic,
+            'recipient' => $recipient
         ]);
     }
 }
